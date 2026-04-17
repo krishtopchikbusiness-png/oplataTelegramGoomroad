@@ -1,0 +1,50 @@
+# Telegram-бот для доступа в закрытый канал
+
+Тестовая схема:
+- пользователь выбирает тариф;
+- переводит деньги на карту;
+- нажимает «Проверить оплату»;
+- админу приходит заявка;
+- админ вручную подтверждает или отклоняет оплату;
+- после подтверждения бот дает кнопку входа в канал;
+- после вступления сообщение со входом удаляется;
+- когда срок закончился, бот в 10:00 по Киеву удаляет пользователя из канала и предлагает выбрать тариф снова.
+
+## Railway переменные
+
+```env
+BOT_TOKEN=
+ADMIN_ID=
+GROUP_ID=
+CARD_NUMBER=
+CARD_HOLDER=
+CHANNEL_URL=
+DATABASE_URL=
+TZ=Europe/Kyiv
+```
+
+## Запуск
+
+Локально:
+
+```bash
+python -m app.main
+```
+
+На Railway можно использовать Dockerfile или команду запуска:
+
+```bash
+python -m app.main
+```
+
+
+## Railway variables
+
+Add these too:
+
+```env
+CHECK_HOUR=10
+CHECK_MINUTE=00
+```
+
+The bot will check expired access every day at this time in the timezone from `TZ`.
